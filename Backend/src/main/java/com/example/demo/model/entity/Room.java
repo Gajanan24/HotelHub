@@ -1,6 +1,7 @@
 package com.example.demo.model.entity;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.example.demo.enums.RoomType;
 
@@ -31,8 +32,8 @@ import lombok.Setter;
 public class Room {
 
 	@Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long roomId;
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private UUID roomId;
 
 	@NotNull(message = "Room number cannot be null")
 	@Min(value = 1, message = "Room number must be greater than 0")

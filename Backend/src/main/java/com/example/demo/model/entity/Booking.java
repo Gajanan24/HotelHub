@@ -2,6 +2,7 @@ package com.example.demo.model.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,8 +26,8 @@ import lombok.Setter;
 public class Booking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookingId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID bookingId;
 
     @ManyToOne
     @JoinColumn(name = "userId")

@@ -1,8 +1,10 @@
 package com.example.demo.model.entity;
 
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,8 +29,8 @@ import lombok.Setter;
 public class Hotel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long hotelId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID hotelId;
 
     @NotBlank(message = "Hotel name cannot be blank")
     @Size(max = 100, message = "Hotel name cannot be longer than 100 characters")
@@ -36,10 +38,12 @@ public class Hotel {
 
     @NotBlank(message = "Hotel email cannot be blank")
     @Email(message = "Hotel email should be valid")
+    @Column(unique = true)
     private String hotelEmail;
 
     @NotBlank(message = "Hotel phone cannot be blank")
     @Pattern(regexp = "^\\d{10}$", message = "Hotel phone should be 10 digits")
+    @Column(unique = true)
     private String hotelPhone;
 
     @Embedded

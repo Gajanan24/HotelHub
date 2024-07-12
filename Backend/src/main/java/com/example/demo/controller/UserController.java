@@ -1,14 +1,19 @@
 package com.example.demo.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.data.dto.UserCreationDTO;
+import com.example.demo.data.dto.UserDTO;
 import com.example.demo.model.entity.User;
 import com.example.demo.model.response.ApiResponse;
 import com.example.demo.service.UserService;
@@ -28,10 +33,19 @@ public class UserController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<ApiResponse<User>> register(@RequestBody User user) {
-		System.out.println("user-->   "+user.toString());
+	public ResponseEntity<ApiResponse<UserDTO>> register(@RequestBody UserCreationDTO user) {
+		
+		System.out.println("user-->   "+user.getPassword());
 		return userService.registerUser(user);
 	}
+	
+	
+	@GetMapping("/get-user/{userId}")
+	public ResponseEntity<ApiResponse<UserDTO>> getUserById(@PathVariable UUID userId){
+		return userService.getUser(userId);
+	}
+	
+	
 	
 	
 	
