@@ -1,6 +1,6 @@
 package com.example.demo.model.entity;
 
-import org.antlr.v4.runtime.misc.NotNull;
+
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
