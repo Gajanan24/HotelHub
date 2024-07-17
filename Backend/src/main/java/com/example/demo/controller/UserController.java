@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.data.dto.UserCreationDTO;
 import com.example.demo.data.dto.UserDTO;
+import com.example.demo.data.dto.UserUpdateDTO;
 import com.example.demo.model.entity.User;
 import com.example.demo.model.response.ApiResponse;
 import com.example.demo.service.UserService;
@@ -36,7 +37,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<ApiResponse<UserDTO>> register(@RequestBody UserCreationDTO user) {
+	public ResponseEntity<ApiResponse<UserDTO>> register(@RequestBody  @Valid UserCreationDTO user) {
 		
 		System.out.println("user-->   "+user.getPassword());
 		return userService.registerUser(user);
@@ -53,7 +54,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/{userId}")
-	public ResponseEntity<ApiResponse<UserDTO>> updateUser(@PathVariable UUID userId, @RequestBody @Valid UserCreationDTO user){
+	public ResponseEntity<ApiResponse<UserDTO>> updateUser(@PathVariable UUID userId, @RequestBody @Valid UserUpdateDTO user){
 		return userService.updateUser(userId, user);
 	}
 	

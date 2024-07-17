@@ -17,6 +17,7 @@ public class ResponseBuilder {
                 .withOtherParams(otherParams)
                 .build();
     }
+ 
 
     public <T> ResponseEntity<ApiResponse<T>> buildResponse(
             int httpStatusCode, String message, T data, Map<String, Object> otherParams) {
